@@ -2,16 +2,16 @@
 
 API GET kaikille havainnoille:
 
-```http://localhost:5000/havainto-api/europe-west1/api/havainnot```
+```https://europe-west1-havainto-api.cloudfunctions.net/apihavainnot```
 
 API GET yhdelle havainnoille:
 
-```http://localhost:5000/havainto-api/europe-west1/api/havainnot/::havaintoID```
+```https://europe-west1-havainto-api.cloudfunctions.net/api/havainnot/::havaintoID```
 
 API POST havainto:
 
-```http://localhost:5000/havainto-api/europe-west1/api/havainnot/```
+```https://europe-west1-havainto-api.cloudfunctions.net/api/havainnot/```
 
 API DELETE yhdelle havainnoille
 
-```http://localhost:5000/havainto-api/europe-west1/api/havainnot/::havaintoID```
+```https://europe-west1-havainto-api.cloudfunctions.net/api/havainnot/::havaintoID```
