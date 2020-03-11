@@ -19,16 +19,16 @@ const {
   getUserDetails
 } = require("./handlers/users");
 
-// Havainto routes
+// Havainto reitit
 app.get("/havainnot", getAllHavainnot);
 app.post("/havainnot", postOneHavainto);
+app.get("/havainnot/:havaintoId", getOneHavainto);
+app.delete("/havainnot/:havaintoId", deleteHavainto);
 
-
-// users routes
+// Käyttäjä reitit
 app.post("/signup", signup);
 app.post("/login", login);
 app.post("/user", addUserDetails);
 app.get("/user/:handle", getUserDetails);
 
 exports.api = functions.region("europe-west1").https.onRequest(app);
-

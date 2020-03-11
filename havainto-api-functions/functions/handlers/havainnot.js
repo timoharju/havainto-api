@@ -65,9 +65,9 @@ exports.getOneHavainto = (req, res) => {
         .get();
     })
     .then(data => {
-      havaintoData.comments = [];
+      havaintoData.havainnot = [];
       data.forEach(doc => {
-        havaintoData.comments.push(doc.data());
+        havaintoData.havainnot.push(doc.data());
       });
       return res.json(havaintoData);
     })
@@ -85,9 +85,6 @@ exports.deleteHavainto = (req, res) => {
     .then(doc => {
       if (!doc.exists) {
         return res.status(404).json({ error: "havainto not found" });
-      }
-      if (doc.data().userHandle !== req.user.handle) {
-        return res.status(403).json({ error: "Unauthorized" });
       } else {
         return document.delete();
       }
