@@ -2,7 +2,7 @@
 
 API GET kaikille havainnoille:
 
-```https://europe-west1-havainto-api.cloudfunctions.net/apihavainnot```
+```https://europe-west1-havainto-api.cloudfunctions.net/api/havainnot```
 
 API GET yhdelle havainnoille:
 
