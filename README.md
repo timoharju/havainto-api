@@ -10,7 +10,7 @@ API GET yhdelle havainnoille:
 
 API POST havainto:
 
-```http://localhost:5000/havainto-api/europe-west1/api/havainnot/
+```http://localhost:5000/havainto-api/europe-west1/api/havainnot/```
 
 API DELETE yhdelle havainnoille
 
