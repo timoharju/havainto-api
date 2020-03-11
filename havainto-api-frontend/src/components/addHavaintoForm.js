@@ -24,23 +24,21 @@ export class addHavaintoForm extends Component {
   constructor() {
     super();
     this.state = {
-      missa: "",
+      havainto: "",
       lisatiedot: "",
-      loading: false,
-      errors: {}
+      missa: "",
+      koordinaattiX: "",
+      koordinaattiY: ""
     };
   }
   handleSubmit = event => {
     event.preventDefault();
-    this.setState({
-      loading: true
-    });
     const havaintoData = {
       havainto: this.state.havainto,
       lisatiedot: this.state.lisatiedot,
       missa: this.state.missa,
       koordinaattiX: this.state.koordinaattiX,
-      koordinaattiY: this.state.koordinaattyY
+      koordinaattiY: this.state.koordinaattiY
     };
     axios
       .post(
@@ -55,10 +53,7 @@ export class addHavaintoForm extends Component {
         this.props.history.push("/");
       })
       .catch(err => {
-        this.setState({
-          error: err.response.data,
-          loading: false
-        });
+        console.log(err);
       });
   };
 
@@ -69,7 +64,6 @@ export class addHavaintoForm extends Component {
   };
   render() {
     const { classes } = this.props;
-    const { errors } = this.state;
     return (
       <Grid container>
         <Grid item sm>
@@ -80,18 +74,16 @@ export class addHavaintoForm extends Component {
               name="havainto"
               type="havainto"
               label="Havainto"
-              helperText={errors.havainto}
-              error={errors.havainto ? true : false}
               value={this.state.havainto}
               onChange={this.handleChange}
               fullWidth
             />
             <TextField
-              id="lisatieto"
-              name="lisatieto"
-              type="lisatieto"
+              id="lisatiedot"
+              name="lisatiedot"
+              type="lisatiedot"
               label="Lisatieto"
-              value={this.state.lisatieto}
+              value={this.state.lisatiedot}
               onChange={this.handleChange}
               fullWidth
             />
@@ -117,7 +109,7 @@ export class addHavaintoForm extends Component {
               id="koordinaattiY"
               name="koordinaattiY"
               type="koordinaattiY"
-              label="KoordinaattY"
+              label="KoordinaattiY"
               value={this.state.koordinaattiY}
               onChange={this.handleChange}
               fullWidth
