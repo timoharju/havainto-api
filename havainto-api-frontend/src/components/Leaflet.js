@@ -49,7 +49,7 @@ export class Leaflet extends Component {
                 //json object[i] of response           
                 var response = res.data[i];
 
-                //Make object
+                //Make mapdata object
                 var objkt = { 'name': JSON.stringify(response.missa), 'coordinates': [response.koordinaattiY, response.koordinaattiX],'lisatiedot':response.lisatiedot, 'population': 15000 };
 
                 //push object to list

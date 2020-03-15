@@ -79,9 +79,13 @@ export class addHavaintoForm extends Component {
         .then(res => {
           console.log(res.data);
           this.setState({
-            loading: false
+            loading: false,
+            havainto: ""
           });
           this.props.history.push("/");
+
+ //After post         
+
         })
         .catch(err => {
           console.log(err);
