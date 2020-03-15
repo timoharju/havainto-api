@@ -8,6 +8,9 @@ import { Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+//Lisäys testaustsa varten
+import Leaflet from "../components/Leaflet";
+
 const styles = {
   form: {
     textAlign: "center",
@@ -31,6 +34,30 @@ export class addHavaintoForm extends Component {
       koordinaattiY: ""
     };
   }
+
+
+  componentWillMount (){
+
+
+    //Get coordinates to map
+    axios
+    .get("https://europe-west1-havainto-api.cloudfunctions.net/api/havainnot")
+    .then(res => {
+        
+        var response = res.data[res.data.length-1];
+        var coordX=response.koordinaattiX
+        var coordY=response.koordinaattiY
+
+        this.setState({
+          koordinaattiX: coordX,
+          koordinaattiY: coordY
+        });
+        
+    })
+    .catch(err => console.log(err));    
+  }
+
+
   handleSubmit = event => {
     event.preventDefault();
     const havaintoData = {
@@ -40,22 +67,26 @@ export class addHavaintoForm extends Component {
       koordinaattiX: this.state.koordinaattiX,
       koordinaattiY: this.state.koordinaattiY
     };
-    axios
-      .post(
-        "https://europe-west1-havainto-api.cloudfunctions.net/api/havainnot",
-        havaintoData
-      )
-      .then(res => {
-        console.log(res.data);
-        this.setState({
-          loading: false
+
+    //Check is there empty fields and non numerical chars in coordinates
+    if(havaintoData.havainto.length > 1 && havaintoData.missa.length >1 &&  isNaN(havaintoData.koordinaattiX)==false && isNaN(havaintoData.koordinaattiY)==false){
+      console.log(havaintoData.havainto.length)
+      axios
+        .post(
+          "https://europe-west1-havainto-api.cloudfunctions.net/api/havainnot",
+          havaintoData
+        )
+        .then(res => {
+          console.log(res.data);
+          this.setState({
+            loading: false
+          });
+          this.props.history.push("/");
+        })
+        .catch(err => {
+          console.log(err);
         });
-        this.props.history.push("/");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  }};
 
   handleChange = event => {
     this.setState({
@@ -63,6 +94,8 @@ export class addHavaintoForm extends Component {
     });
   };
   render() {
+
+
     const { classes } = this.props;
     return (
       <Grid container>
@@ -115,6 +148,7 @@ export class addHavaintoForm extends Component {
               fullWidth
             />
             <Button
+              style={{width: "100%",height:"100%",flex:1}}
               type="submit"
               variant="contained"
               color="primary"
@@ -132,5 +166,7 @@ export class addHavaintoForm extends Component {
 addHavaintoForm.protoTypes = {
   classes: PropTypes.object.isRequired
 };
+
+
 
 export default addHavaintoForm;

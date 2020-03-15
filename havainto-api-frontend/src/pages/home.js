@@ -30,7 +30,9 @@ class home extends Component {
     let recentHavainnotMarkup = this.state.havainnot ? (
       this.state.havainnot.map(havainto => (
         <p>
+        <button type = "button" size="lg" style={{width: "100%",height:"100%",flex:1}} active>
           <Havainto havainto={havainto} />
+        </button>
         </p>
       ))
     ) : (
@@ -38,13 +40,16 @@ class home extends Component {
         <p>Loading..</p>
       </div>
     );
+
+
+    
     return (
       <Grid container spacing={16}>
         <Leaflet></Leaflet>
         <Grid item sm={4} xs={6}>
         <Typography variant="body1">Viimeisimmät havainnot:</Typography> {recentHavainnotMarkup}
         </Grid>
-        <Grid item sm={4} xs={6}><HForm classname="Hform"></HForm></Grid>
+        <Grid item sm={8} xs={6}><HForm classname="Hform"></HForm></Grid>
       
       </Grid>
     );
