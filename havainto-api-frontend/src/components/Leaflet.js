@@ -50,7 +50,7 @@ export class Leaflet extends Component {
                 var response = res.data[i];
 
                 //Make object
-                var objkt = { 'name': JSON.stringify(response.missa), 'coordinates': [response.koordinaattiX, response.koordinaattiY],'lisatiedot':response.lisatiedot, 'population': 15000 };
+                var objkt = { 'name': JSON.stringify(response.missa), 'coordinates': [response.koordinaattiY, response.koordinaattiX],'lisatiedot':response.lisatiedot, 'population': 15000 };
 
                 //push object to list
                 informationList.push(objkt);
@@ -75,18 +75,12 @@ export class Leaflet extends Component {
     console.log(e.latlng);
     this.setState({markers: markkerit})
 
-    //print items on coordinate list
-    //console.log(this.state.havainnot[1].lisatiedot)
-
     // add temporary marker on clicked spot
     this.state.havainnot[this.state.havainnot.length-1]={ 'name': 'empty', 'coordinates': [e.latlng.lng, e.latlng.lat],'lisatiedot':'empty', 'population': 15000 }
     this.forceUpdate()
 
     //new havainnot
     const uusiHavainto=[...this.state.havainnot];
-    //HForm.uusiHavainto()
-    
-    //const tiedot=[...HForm.state]
 
   }
 
@@ -117,14 +111,8 @@ export class Leaflet extends Component {
                     havainnot["lisatiedot"]}
                 </span>
               </Tooltip>
-            </CircleMarker>
-            
-
-
+            </CircleMarker>           
           );
-
-          
-
         })}
       </Map>
       
